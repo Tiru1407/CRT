@@ -1,0 +1,52 @@
+UNDIRECTED UNWEIGHTED GRAPH
+
+CODE:
+def addNode(v):
+    global nodecount
+    if v in nodes:
+        print(v,"is already in nodes")
+    else:
+        nodes.append(v)
+        nodecount=nodecount+1
+    for x in graph:
+        x.append(0)
+    temp=[]
+    for i in range(nodecount):
+        temp.append(0)
+        graph.append(temp)
+def show():
+    if nodecount==0:
+        print("No nodes are available")
+    for i in range(nodecount):
+        for j in range(nodecount):
+            print(graph[i][j],end=" ")
+        print()
+def addEdge(node1,node2):
+    if node1 not in nodes:
+        print(node1,"is not available")
+    elif node2 not in nodes:
+        print(node2,"is not available")
+    else:
+        i=nodes.index(node1)
+        j=nodes.index(node2)
+        graph[i][j]=1
+        graph[j][i]=1
+nodes=[]
+graph=[]
+nodecount=0
+while True:
+    print("1.Add node\n2.Show\n3.Add Edge\n4.Exit")
+    ch=int(input("Enter your choice"))
+    if ch==1:
+        v=input("Enter node")
+        addNode(v)
+    elif ch==2:
+        show()
+    elif ch==3:
+        node1=input("Enter node1")
+        node2=input("Enter node2")
+        addEdge(node1,node2)
+    elif ch==4:
+        break
+    else:
+        print("Invalid choice")
